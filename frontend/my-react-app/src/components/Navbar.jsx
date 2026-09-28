@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Menu, MoonStar, Sun, X } from "lucide-react";
+import logoHeader from "../assets/logoheader.png";
 
 const links = [
   { to: "/", label: "Home" },
@@ -45,11 +46,8 @@ export default function Navbar({ theme, toggleTheme }) {
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:h-20 md:px-8">
-        <NavLink to="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-dawn-gradient shadow-glow">
-            <Sun size={16} className="text-[var(--bg)]" strokeWidth={2.5} />
-          </span>
-          <span className="font-display text-lg font-semibold tracking-tight text-[var(--text)]">Solstice</span>
+        <NavLink to="/" className="flex items-center" onClick={() => setOpen(false)}>
+          <img src={logoHeader} alt="Solstice" className="h-12 w-auto object-contain md:h-14" />
         </NavLink>
 
         <ul className="hidden items-center gap-1 md:flex">

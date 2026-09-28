@@ -52,6 +52,10 @@ export default function App() {
   const [theme, setTheme] = useState(resolveTheme);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem(THEME_KEY, theme);
   }, [theme]);
@@ -61,7 +65,7 @@ export default function App() {
   };
 
   return (
-    <div data-theme={theme} className="min-h-screen flex flex-col overflow-x-hidden bg-[var(--bg)] text-[var(--text)]">
+    <div data-theme={theme} className="min-h-screen flex flex-col overflow-x-clip bg-[var(--bg)] text-[var(--text)]">
       <Suspense fallback={<div className="h-16" />}>
         <Navbar theme={theme} toggleTheme={toggleTheme} />
       </Suspense>
