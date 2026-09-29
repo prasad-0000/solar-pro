@@ -14,7 +14,8 @@ app.use(
     origin: [
       "http://localhost:5173",
       "http://127.0.0.1:5173",
-      "https://solar-pro-1eog.onrender.com"
+      "https://heliossolor.netlify.app",      //  ADD YOUR NETLIFY URL
+      "https://solar-pro-digf.onrender.com"   //  NEW RENDER URL
     ],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
