@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, ImageIcon, Tag } from "lucide-react";
 
-const API_URL = "https://solar-pro-1eog.onrender.com/api/projects";
+const API_URL = "https://solar-pro-1.onrender.com/api/projects";
 const ITEMS_PER_PAGE = 6;
 
 export default function AllProjects() {
@@ -74,7 +74,7 @@ export default function AllProjects() {
       return photo;
     }
 
-    return `https://solar-pro-1eog.onrender.com${photo}`;
+    return `https://solar-pro-1.onrender.com${photo}`;
   };
 
   const handleFilterChange = (selectedFilter) => {

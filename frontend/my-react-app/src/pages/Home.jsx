@@ -10,6 +10,8 @@ import installImage2 from "../assets/image2.jpeg";
 import installImage3 from "../assets/image3.jpeg";
 import installImage4 from "../assets/image4.jpeg";
 import teamImage from "../assets/teamimage.png";
+import swelectimage from "../assets/swelect.jpg"
+import Apsimage from "../assets/aps.jfif"
 
 import {
   ArrowRight,
@@ -95,8 +97,8 @@ const electrical = [
 const panelBrands = [
   { name: "SAATVIK", desc: "Cost-effective modules with dependable output for homes and businesses.", image: polyImage },
   { name: "ZAP91", desc: "High-efficiency modules, great when roof space is limited.", image: monoImage },
-  { name: "SWELECT", desc: "Trusted modules for residential and commercial rooftops." },
-  { name: "APS", desc: "Modules supplied with matching APS inverters as a single package." },
+  { name: "SWELECT", desc: "Trusted modules for residential and commercial rooftops.", image: swelectimage },
+  { name: "APS", desc: "Modules supplied with matching APS inverters as a single package.", image: Apsimage },
 ];
 
 const inverterBrands = ["APS", "DEYE", "SOLIS", "DUROSAL"];
@@ -523,7 +525,8 @@ export default function Home() {
 
       {/* ====================== 6. PANELS AND INVERTERS ================== */}
       <Section>
-        <SectionHead eyebrow="Equipment" title="Panels and inverters we supply." body="Mix and match to your budget and roof space. We advise the best pairing after the site survey." />
+        <SectionHead eyebrow="Equipment" title="Panels and inverters we supply." body="
+        " />
 
         <RevealStagger className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
           {panelBrands.map((p) => (
