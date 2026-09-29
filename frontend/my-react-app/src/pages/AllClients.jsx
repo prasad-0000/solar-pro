@@ -27,7 +27,7 @@ export default function AllClients() {
       setError("");
 
       const response = await fetch(
-        "https://solar-pro-digf.onrender.com",
+        "https://solar-pro-digf.onrender.com/api/clients",
         // "https://10.70.9.31:5000/api/clients",
         // "http://localhost:5000/api/clients",
       );

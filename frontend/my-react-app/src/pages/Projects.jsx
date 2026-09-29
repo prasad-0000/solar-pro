@@ -79,7 +79,8 @@ export default function AllProjects() {
       return photo;
     }
 
-    return `${BASE_URL}${photo}`;
+    const photoPath = photo.startsWith("/") ? photo : `/${photo}`;
+    return `${BASE_URL}${photoPath}`;
   };
 
   const handleFilterChange = (selectedFilter) => {

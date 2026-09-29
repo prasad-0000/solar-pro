@@ -1,8 +1,10 @@
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const { cloudinary, cloudinaryConfigured } = require("../config/cloudinary");
 
-const uploadPath = "uploads/projects";
+const uploadPath = path.resolve(__dirname, "../../uploads/projects");
 
 if (!fs.existsSync(uploadPath)) {
     fs.mkdirSync(uploadPath, {
@@ -10,23 +12,23 @@ if (!fs.existsSync(uploadPath)) {
     });
 }
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, uploadPath);
-    },
+const storage = cloudinaryConfigured
+    ? new CloudinaryStorage({
+        cloudinary,
+        params: {
+            folder: "solar-pro/projects",
+            allowed_formats: ["jpg", "jpeg", "png", "webp"],
+        },
+    })
+    : multer.diskStorage({
+        destination: (req, file, cb) => cb(null, uploadPath),
 
-    filename: (req, file, cb) => {
-        const uniqueName =
-            Date.now() +
-            "-" +
-            Math.round(Math.random() * 1000000);
+        filename: (req, file, cb) => {
+            const uniqueName = `${Date.now()}-${Math.round(Math.random() * 1000000)}`;
 
-        cb(
-            null,
-            uniqueName + path.extname(file.originalname)
-        );
-    }
-});
+            cb(null, uniqueName + path.extname(file.originalname));
+        },
+    });
 
 const fileFilter = (req, file, cb) => {
     const allowedTypes = /jpeg|jpg|png|webp/;

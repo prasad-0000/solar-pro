@@ -31,7 +31,9 @@ const createProject = async (req, res, next) => {
     }
 
     const project = await Project.create({
-      photo: `/uploads/projects/${req.file.filename}`,
+      photo: req.file.path?.startsWith("http")
+        ? req.file.path
+        : `/uploads/projects/${req.file.filename}`,
       category,
       title,
       description,

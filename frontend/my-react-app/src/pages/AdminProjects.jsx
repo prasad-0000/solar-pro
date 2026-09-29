@@ -99,7 +99,8 @@ export default function AllProjects() {
       return photo;
     }
 
-    return `${API_BASE_URL}${photo}`;
+    const photoPath = photo.startsWith("/") ? photo : `/${photo}`;
+    return `${API_BASE_URL}${photoPath}`;
   };
 
   return (
