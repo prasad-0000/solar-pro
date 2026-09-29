@@ -2,8 +2,8 @@ import React, { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, ImageIcon, Tag } from "lucide-react";
 
-// const BASE_URL = "https://solar-pro-1eog.onrender.com";
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://solar-pro-digf.onrender.com";
+// const BASE_URL = "http://localhost:5000";
 const API_URL = `${BASE_URL}/api/projects`;
 
 const ITEMS_PER_PAGE = 6;

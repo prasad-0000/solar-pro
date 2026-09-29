@@ -55,9 +55,9 @@ export default function AdminDashboard() {
       setIsSubmitting(true);
 
       const response = await fetch(
-        // "https://solar-pro-1eog.onrender.com/api/clients",
+        "https://solar-pro-digf.onrender.com/api/clients",
         // "https://10.70.9.31:5000/api/clients",
-        "http://localhost:5000/api/clients",
+        // "http://localhost:5000/api/clients",
         {
           method: "POST",
           headers: {

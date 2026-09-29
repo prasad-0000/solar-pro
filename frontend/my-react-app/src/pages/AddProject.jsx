@@ -14,8 +14,8 @@ import {
   Check,
 } from "lucide-react";
 
-// const API_BASE_URL = "https://solar-pro-1eog.onrender.com";
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = "https://solar-pro-digf.onrender.com";
+// const API_BASE_URL = "http://localhost:5000";
 
 /* GET CROPPED IMAGE */
 const createImage = (url) =>

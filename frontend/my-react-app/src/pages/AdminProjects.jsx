@@ -10,8 +10,8 @@ import {
 
 const filters = ["All", "Residential", "Commercial", "Industrial"];
 
-// const API_BASE_URL = "https://solar-pro-1eog.onrender.com";
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = "https://solar-pro-digf.onrender.com";
+// const API_BASE_URL = "http://localhost:5000";
 
 export default function AllProjects() {
   const [filter, setFilter] = useState("All");
