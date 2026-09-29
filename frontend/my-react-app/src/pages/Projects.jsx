@@ -2,7 +2,10 @@ import React, { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, ImageIcon, Tag } from "lucide-react";
 
-const API_URL = "https://solar-pro-1.onrender.com/api/projects";
+// const BASE_URL = "https://solar-pro-1eog.onrender.com";
+const BASE_URL = "http://localhost:5000";
+const API_URL = `${BASE_URL}/api/projects`;
+
 const ITEMS_PER_PAGE = 6;
 
 export default function AllProjects() {
@@ -68,13 +71,15 @@ export default function AllProjects() {
   }, [filteredProjects, currentPage]);
 
   const getImageUrl = (photo) => {
-    if (!photo) return "";
+    if (!photo) {
+      return "";
+    }
 
     if (photo.startsWith("http")) {
       return photo;
     }
 
-    return `https://solar-pro-1.onrender.com${photo}`;
+    return `${BASE_URL}${photo}`;
   };
 
   const handleFilterChange = (selectedFilter) => {
@@ -100,7 +105,6 @@ export default function AllProjects() {
 
   return (
     <div className="min-h-screen bg-[var(--bg)]">
-      {/* Header */}
       <section className="bg-horizon-fade pb-10 pt-16 md:pt-24">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <span className="eyebrow">Projects</span>
@@ -116,11 +120,9 @@ export default function AllProjects() {
         </div>
       </section>
 
-      {/* Projects */}
       <section className="pb-16 pt-6 md:pb-20">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <LayoutGroup>
-            {/* Filters */}
             <div className="mb-10 flex flex-wrap gap-2">
               {filters.map((item) => (
                 <button
@@ -150,14 +152,12 @@ export default function AllProjects() {
               ))}
             </div>
 
-            {/* Error */}
             {error && (
               <div className="mb-8 rounded-xl border border-red-500/30 bg-red-500/10 px-5 py-4 text-sm text-red-400">
                 {error}
               </div>
             )}
 
-            {/* Empty State */}
             {!error && filteredProjects.length === 0 && (
               <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-10 text-center">
                 <ImageIcon size={42} className="mx-auto text-[var(--muted)]" />
@@ -172,7 +172,6 @@ export default function AllProjects() {
               </div>
             )}
 
-            {/* Projects Grid */}
             <motion.div
               layout
               className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
@@ -206,7 +205,6 @@ export default function AllProjects() {
                     }}
                     className="group overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--panel)] transition-colors hover:border-[rgba(255,183,77,0.3)]"
                   >
-                    {/* Project Image */}
                     <div className="relative h-52 overflow-hidden bg-black/10">
                       {project.photo ? (
                         <img
@@ -214,6 +212,10 @@ export default function AllProjects() {
                           alt={project.title || "Solar project"}
                           className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                           onError={(e) => {
+                            console.error(
+                              "Image failed:",
+                              getImageUrl(project.photo),
+                            );
                             e.currentTarget.style.display = "none";
                           }}
                         />
@@ -226,13 +228,11 @@ export default function AllProjects() {
                         </div>
                       )}
 
-                      {/* Project Category */}
                       <span className="absolute right-3 top-3 rounded-full border border-white/20 bg-black/20 px-3 py-1 text-[11px] font-mono uppercase tracking-[0.14em] text-white backdrop-blur-md">
                         {project.category || "Project"}
                       </span>
                     </div>
 
-                    {/* Project Details */}
                     <div className="p-6">
                       <h3 className="font-display text-xl font-semibold text-[var(--text)]">
                         {project.title || "Untitled Project"}
@@ -255,10 +255,8 @@ export default function AllProjects() {
               </AnimatePresence>
             </motion.div>
 
-            {/* Pagination */}
             {filteredProjects.length > ITEMS_PER_PAGE && (
               <div className="mt-12 flex flex-wrap items-center justify-center gap-2">
-                {/* Previous */}
                 <button
                   type="button"
                   onClick={() => goToPage(currentPage - 1)}
@@ -269,7 +267,6 @@ export default function AllProjects() {
                   <ChevronLeft size={18} />
                 </button>
 
-                {/* Page Numbers */}
                 {Array.from(
                   { length: totalPages },
                   (_, index) => index + 1,
@@ -288,7 +285,6 @@ export default function AllProjects() {
                   </button>
                 ))}
 
-                {/* Next */}
                 <button
                   type="button"
                   onClick={() => goToPage(currentPage + 1)}
@@ -300,23 +296,6 @@ export default function AllProjects() {
                 </button>
               </div>
             )}
-
-            {/* Project Count */}
-            {/* {filteredProjects.length > 0 && (
-              <p className="mt-5 text-center text-xs text-[var(--muted)]">
-                Showing{" "}
-                {Math.min(
-                  (currentPage - 1) * ITEMS_PER_PAGE + 1,
-                  filteredProjects.length
-                )}
-                -
-                {Math.min(
-                  currentPage * ITEMS_PER_PAGE,
-                  filteredProjects.length
-                )}{" "}
-                of {filteredProjects.length} projects
-              </p>
-            )} */}
           </LayoutGroup>
         </div>
       </section>

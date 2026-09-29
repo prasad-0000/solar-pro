@@ -27,7 +27,9 @@ export default function AllClients() {
       setError("");
 
       const response = await fetch(
-        "https://solar-pro-1.onrender.com/api/clients",
+        // "https://solar-pro-1eog.onrender.com/api/clients",
+        // "https://10.70.9.31:5000/api/clients",
+        "http://localhost:5000/api/clients",
       );
 
       const data = await response.json();

@@ -9,15 +9,27 @@ const errorMiddleware = require("./middleware/errorMiddleware");
 
 const app = express();
 
-// Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "http://127.0.0.1:5173",
+      "https://solar-pro-1eog.onrender.com"
+    ],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
+  })
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Uploaded project images
-app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
+app.use(
+  "/uploads",
+  express.static(path.join(__dirname, "../uploads"))
+);
 
-// Home API
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
@@ -25,16 +37,10 @@ app.get("/", (req, res) => {
   });
 });
 
-// Admin APIs
 app.use("/api/admin", adminRoutes);
-
-// Client APIs
 app.use("/api/clients", clientRoutes);
-
-// Project APIs
 app.use("/api/projects", projectRoutes);
 
-// Error Middleware
 app.use(errorMiddleware);
 
 module.exports = app;

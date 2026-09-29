@@ -28,7 +28,9 @@ export default function AdminLogin() {
       setIsSubmitting(true);
 
       const response = await fetch(
-        "https://solar-pro-1.onrender.com/api/admin/login",
+        // "https://solar-pro-1eog.onrender.com/api/admin/login",
+        // "https://10.70.9.31:5000/api/admin/login",
+        "http://localhost:5000/api/admin/login",
         {
           method: "POST",
           headers: {
