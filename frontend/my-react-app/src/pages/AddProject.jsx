@@ -448,7 +448,7 @@ export default function AddProject() {
 
                     <option value="Industrial">Industrial</option>
 
-                    <option value="Other">Other</option>
+                    {/* <option value="Other">Other</option> */}
                   </select>
 
                   <FolderKanban
