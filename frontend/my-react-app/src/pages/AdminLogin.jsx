@@ -129,7 +129,7 @@ export default function AdminLogin() {
                       onChange={handleChange}
                       disabled={isSubmitting}
                       className="w-full rounded-xl border px-4 py-3 pr-10 text-sm text-[var(--text)] placeholder:text-[var(--muted)]/70 bg-[var(--bg)]"
-                      placeholder="admin@company.com"
+                      placeholder="Example@gmail.com"
                     />
 
                     <Mail
