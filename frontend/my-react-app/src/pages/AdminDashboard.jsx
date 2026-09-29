@@ -55,7 +55,9 @@ export default function AdminDashboard() {
       setIsSubmitting(true);
 
       const response = await fetch(
-        "https://solar-pro-1eog.onrender.com/api/clients",
+        // "https://solar-pro-1eog.onrender.com/api/clients",
+        // "https://10.70.9.31:5000/api/clients",
+        "http://localhost:5000/api/clients",
         {
           method: "POST",
           headers: {
@@ -150,7 +152,7 @@ export default function AdminDashboard() {
                   <li>• Residential</li>
                   <li>• Commercial</li>
                   <li>• Industrial</li>
-                  <li>• Other</li>
+                  {/* <li>• Other</li> */}
                 </ul>
               </div>
             </div>
@@ -255,7 +257,7 @@ export default function AdminDashboard() {
                   <option value="Residential">Residential</option>
                   <option value="Commercial">Commercial</option>
                   <option value="Industrial">Industrial</option>
-                  <option value="Other">Other</option>
+                  {/* <option value="Other">Other</option> */}
                 </select>
               </div>
 
