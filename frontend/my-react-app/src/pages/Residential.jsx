@@ -27,8 +27,8 @@ const steps = [
 ];
 
 const stats = [
-  { value: "$1,400", label: "annual savings" },
-  { value: "7.8 kW", label: "average system" },
+  { value: "~₹23,000", label: "illustrative annual bill saving" },
+  { value: "3 kW", label: "example system size" },
   { value: "28 yrs", label: "projected life" },
 ];
 
@@ -83,8 +83,8 @@ export default function Residential() {
                       <span>Today</span>
                     </div>
                     <div className="flex items-end justify-between gap-3">
-                      <div className="font-display text-4xl font-semibold text-[var(--text)]">68</div>
-                      <div className="pb-1 text-sm text-[var(--muted)]">kWh</div>
+                      <div className="font-display text-4xl font-semibold text-[var(--text)]">~12</div>
+                      <div className="pb-1 text-sm text-[var(--muted)]">units today (example)</div>
                     </div>
                     <div className="mt-5 flex h-24 items-end gap-2">
                       {[36, 48, 58, 65, 70, 92, 88, 100].map((bar, idx) => (

@@ -20,10 +20,10 @@ const plans = [
 ];
 
 const savings = [
-  { label: "Average monthly utility bill", value: "$210" },
-  { label: "Projected solar offset", value: "72%" },
-  { label: "Estimated monthly payment", value: "$145" },
-  { label: "payback window", value: "6–8 yrs" },
+  { label: "Example monthly electricity bill", value: "₹2,400" },
+  { label: "Example energy offset", value: "Up to 80%" },
+  { label: "Estimated monthly bill saving", value: "₹1,900" },
+  { label: "Estimated payback", value: "Quote-based" },
 ];
 
 export default function Savings() {
@@ -40,7 +40,7 @@ export default function Savings() {
                 A smarter energy decision should feel affordable from day one.
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-[var(--muted)]">
-                Choose the ownership model that fits your budget, then let the system start doing the heavy lifting on your monthly energy costs.
+                Compare solar options using your actual electricity use, local DISCOM tariff, roof conditions, and available scheme eligibility.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <NavLink to="/contact" className="btn-primary group">
@@ -75,8 +75,8 @@ export default function Savings() {
                       <span>downward</span>
                     </div>
                     <div className="mt-5 flex items-end justify-between gap-3">
-                      <div className="font-display text-4xl font-semibold text-[var(--text)]">-$115</div>
-                      <div className="pb-1 text-sm text-[var(--muted)]">average month</div>
+                      <div className="font-display text-4xl font-semibold text-[var(--text)]">~₹1,900</div>
+                      <div className="pb-1 text-sm text-[var(--muted)]">illustrative monthly bill saving</div>
                     </div>
                     <div className="mt-6 flex h-20 items-end gap-2">
                       {[28, 36, 54, 64, 72, 63, 86, 100].map((bar, idx) => (
@@ -93,6 +93,9 @@ export default function Savings() {
                       </div>
                     ))}
                   </div>
+                  <p className="mt-4 text-xs leading-relaxed text-[var(--muted)]">
+                    Planning example: 300 units of monthly household use, a 3 kW rooftop system generating around 360 units in a typical month, and an assumed blended tariff of ₹8 per unit. Estimated savings assume around 240 units offset at the meter. Actual output, bill savings, fixed charges, export credits, and payback depend on your location, season, roof, and DISCOM tariff rules.
+                  </p>
                 </div>
               </div>
             </motion.div>
