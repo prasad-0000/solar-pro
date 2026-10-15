@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -54,7 +53,7 @@ export default function Storage() {
               initial={{ opacity: 0, y: 32 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="relative"
+              className="relative lg:translate-y-3"
             >
               <div className="hero-card p-5 md:p-6">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,183,77,0.16),_transparent_38%)]" />
@@ -188,7 +187,7 @@ export default function Storage() {
         </div>
       </section>
 
-      <section className="pb-8 md:pb-10">
+      <section className="pt-12 pb-8 md:pt-16 md:pb-10">
         <div className="mx-auto max-w-5xl px-5 md:px-8">
           <Reveal>
             <div className="relative overflow-hidden rounded-[2rem] bg-dawn-gradient p-8 text-[var(--bg)] md:p-12">

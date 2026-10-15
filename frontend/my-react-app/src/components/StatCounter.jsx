@@ -1,21 +1,30 @@
-import React, { useEffect, useRef } from "react";
-import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 
 export default function StatCounter({ value, suffix = "", label }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.6 });
-  const motionValue = useMotionValue(0);
-  const spring = useSpring(motionValue, { duration: 1600, bounce: 0 });
-  const [display, setDisplay] = React.useState(0);
+  const [display, setDisplay] = useState(0);
 
   useEffect(() => {
-    if (isInView) motionValue.set(value);
-  }, [isInView, value, motionValue]);
+    if (!isInView) return undefined;
 
-  useEffect(() => {
-    const unsub = spring.on("change", (v) => setDisplay(Math.round(v)));
-    return unsub;
-  }, [spring]);
+    const duration = 2000;
+    let startTime;
+    let frameId;
+
+    const countUp = (time) => {
+      if (startTime === undefined) startTime = time;
+      const progress = Math.min((time - startTime) / duration, 1);
+      const easedProgress = 1 - (1 - progress) ** 3;
+      setDisplay(progress === 1 ? value : Math.floor(value * easedProgress));
+
+      if (progress < 1) frameId = requestAnimationFrame(countUp);
+    };
+
+    frameId = requestAnimationFrame(countUp);
+    return () => cancelAnimationFrame(frameId);
+  }, [isInView, value]);
 
   return (
     <motion.div ref={ref} className="text-center">

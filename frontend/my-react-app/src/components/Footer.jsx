@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import { Mail, MapPin, Phone, Sun } from "lucide-react";
 
@@ -15,6 +14,7 @@ const columns = [
     links: [
       { label: "About", to: "/about" },
       { label: "Projects", to: "/projects" },
+      { label: "Portfolio", to: "/portfolio" },
       { label: "Careers", to: "/about" },
       { label: "Contact", to: "/contact" },
     ],

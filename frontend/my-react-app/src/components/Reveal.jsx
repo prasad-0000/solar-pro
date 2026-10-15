@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint react-refresh/only-export-components: off -- shared reveal variants are consumed by many pages. */
 import { motion, useReducedMotion } from "framer-motion";
 
 /**

@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
@@ -17,6 +17,7 @@ const Faq = lazy(() => import("./pages/Faq.jsx"));
 const Resources = lazy(() => import("./pages/Resources.jsx"));
 const Products = lazy(() => import("./pages/Products.jsx"));
 const Projects = lazy(() => import("./pages/Projects.jsx"));
+const Portfolio = lazy(() => import("./pages/Portfolio.jsx"));
 const Contact = lazy(() => import("./pages/Contact.jsx"));
 const AdminLogin = lazy(() => import("./pages/AdminLogin.jsx"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard.jsx"));
@@ -86,6 +87,8 @@ export default function App() {
                 <Route path="/resources" element={<PageWrap><Resources /></PageWrap>} />
                 <Route path="/products" element={<PageWrap><Products /></PageWrap>} />
                 <Route path="/projects" element={<PageWrap><Projects /></PageWrap>} />
+                <Route path="/portfolio" element={<PageWrap><Portfolio /></PageWrap>} />
+                
                 <Route path="/contact" element={<PageWrap><Contact /></PageWrap>} />
                 <Route path="/admin-login" element={<PageWrap><AdminLogin /></PageWrap>} />
                 <Route path="/admin-dashboard" element={<PageWrap><AdminDashboard /></PageWrap>} />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 
 import {
@@ -23,16 +23,9 @@ export default function AllProjects() {
   const [currentPage, setCurrentPage] = useState(1);
   const projectsPerPage = 6;
 
-  useEffect(() => {
-    fetchProjects();
-  }, []);
-
   // FETCH PROJECTS
-  const fetchProjects = async () => {
+  const fetchProjects = useCallback(async () => {
     try {
-      setLoading(true);
-      setError("");
-
       const response = await fetch(`${API_BASE_URL}/api/projects`);
 
       const data = await response.json();
@@ -51,7 +44,13 @@ export default function AllProjects() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    // The request updates state after its fetch/JSON promises resolve; the rule cannot see that async boundary.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchProjects();
+  }, [fetchProjects]);
 
   // FILTER PROJECTS
   const visibleProjects =

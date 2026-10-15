@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BatteryFull, Check, Cpu, Sun } from "lucide-react";
 import Reveal from "../components/Reveal.jsx";
@@ -9,9 +9,10 @@ const tabs = [
     label: "Panels",
     icon: Sun,
     items: [
-      { name: "Solstice Core 440W", specs: ["440W output", "21.8% efficiency", "25yr warranty"] },
-      { name: "Solstice Core Pro 550W", specs: ["550W output", "22.6% efficiency", "25yr warranty"] },
-      { name: "Solstice Slate (all-black)", specs: ["425W output", "21.2% efficiency", "Low-glare finish"] },
+      { name: "SAATVIK solar panels", specs: ["540–720 Wp options", "Cost-effective modules", "12-year manufacturing warranty"] },
+      { name: "ZAP91 solar panels", specs: ["540–720 Wp options", "High efficiency for limited roof space", "12-year manufacturing warranty"] },
+      { name: "SWELECT solar panels", specs: ["540–720 Wp options", "Residential and commercial systems", "12-year manufacturing warranty"] },
+      { name: "APS panel packages", specs: ["Panels supplied with matching APS inverters", "Selected by system size", "12-year manufacturing warranty"] },
     ],
   },
   {
@@ -19,9 +20,10 @@ const tabs = [
     label: "Inverters",
     icon: Cpu,
     items: [
-      { name: "String Inverter X1", specs: ["97.5% efficiency", "Wi-Fi monitoring", "10yr warranty"] },
-      { name: "Microinverter M-Series", specs: ["Panel-level tracking", "99% uptime design", "25yr warranty"] },
-      { name: "Hybrid Inverter H2", specs: ["Battery-ready", "Backup-capable", "12yr warranty"] },
+      { name: "APS inverters", specs: ["Grid-connected system options", "Selected for your system size", "Product warranty included in the quote"] },
+      { name: "DEYE inverters", specs: ["Grid-connected system options", "Selected for your system size", "Product warranty included in the quote"] },
+      { name: "SOLIS inverters", specs: ["Grid-connected system options", "Selected for your system size", "Product warranty included in the quote"] },
+      { name: "DUROSAL inverters", specs: ["Grid-connected system options", "Selected for your system size", "Product warranty included in the quote"] },
     ],
   },
   {
@@ -29,9 +31,8 @@ const tabs = [
     label: "Battery Storage",
     icon: BatteryFull,
     items: [
-      { name: "PowerVault 10", specs: ["10 kWh capacity", "Whole-home backup", "10yr warranty"] },
-      { name: "PowerVault 20 Stack", specs: ["20 kWh capacity", "Expandable modules", "10yr warranty"] },
-      { name: "PowerVault Compact", specs: ["5 kWh capacity", "Apartment-friendly", "10yr warranty"] },
+      { name: "10 kWh battery storage", specs: ["10 kWh usable output", "Whole-home backup options", "10-year coverage"] },
+      { name: "20 kWh battery storage", specs: ["20 kWh usable output", "Sized to your backup needs", "10-year coverage"] },
     ],
   },
 ];
@@ -47,10 +48,10 @@ export default function Products() {
           <Reveal>
             <span className="eyebrow">Products</span>
             <h1 className="mt-3 max-w-2xl font-display text-4xl font-semibold leading-tight md:text-5xl">
-              Hardware built to run for 25 years, quietly.
+              Solar equipment selected for dependable performance.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-[var(--muted)]">
-              We only install equipment we’d put on our own roofs: tier-1 panels, marine-grade mounting, and inverters with real track records.
+              We supply SAATVIK, ZAP91, SWELECT, and APS panels, with APS, DEYE, SOLIS, and DUROSAL inverters. System size, equipment, and warranty details are confirmed in your site-specific quote.
             </p>
           </Reveal>
         </div>

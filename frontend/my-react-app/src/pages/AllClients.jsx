@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Users,
   Mail,
@@ -17,15 +17,8 @@ export default function AllClients() {
   const [currentPage, setCurrentPage] = useState(1);
   const clientsPerPage = 6;
 
-  useEffect(() => {
-    fetchClients();
-  }, []);
-
-  const fetchClients = async () => {
+  const fetchClients = useCallback(async () => {
     try {
-      setLoading(true);
-      setError("");
-
       const response = await fetch(
         "https://solar-pro-digf.onrender.com/api/clients",
         // "https://10.70.9.31:5000/api/clients",
@@ -47,7 +40,13 @@ export default function AllClients() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    // The request updates state after its fetch/JSON promises resolve; the rule cannot see that async boundary.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchClients();
+  }, [fetchClients]);
 
   const totalPages = Math.ceil(clients.length / clientsPerPage);
 

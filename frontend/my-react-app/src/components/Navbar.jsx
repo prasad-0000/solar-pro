@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Menu, MoonStar, Sun, X } from "lucide-react";
@@ -9,6 +9,7 @@ const links = [
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
   { to: "/savings", label: "Savings" },
+  { to: "/portfolio", label: "Portfolio" },
   { to: "/projects", label: "Projects" },
   { to: "/contact", label: "Contact" },
 ];
@@ -24,6 +25,22 @@ export default function Navbar({ theme, toggleTheme }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const servicesCloseTimer = useRef(null);
+
+  const openServices = () => {
+    window.clearTimeout(servicesCloseTimer.current);
+    setServicesOpen(true);
+  };
+
+  const closeServicesSoon = () => {
+    window.clearTimeout(servicesCloseTimer.current);
+    servicesCloseTimer.current = window.setTimeout(() => setServicesOpen(false), 160);
+  };
+
+  const toggleServices = () => {
+    window.clearTimeout(servicesCloseTimer.current);
+    setServicesOpen((prev) => !prev);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -39,35 +56,45 @@ export default function Navbar({ theme, toggleTheme }) {
     };
   }, [open]);
 
+  useEffect(() => () => window.clearTimeout(servicesCloseTimer.current), []);
+
   return (
     <header
       className={`sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--nav-bg)]/95 shadow-[0_4px_18px_rgba(0,0,0,0.18)] backdrop-blur-xl transition-all duration-300 ${
         scrolled ? "shadow-[0_8px_28px_rgba(0,0,0,0.2)]" : ""
       }`}
     >
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:h-20 md:px-8">
+      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 lg:h-20 lg:px-8">
         <NavLink to="/" className="flex items-center" onClick={() => setOpen(false)}>
-          <img src={logoHeader} alt="Solstice" className="h-12 w-auto object-contain md:h-14" />
+          <img src={logoHeader} alt="Solstice" className="h-12 w-auto object-contain lg:h-14" />
         </NavLink>
 
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="hidden items-center gap-1 lg:flex">
           {links.map((l) => {
             if (l.label === "Services") {
               return (
-                <li key={l.to} className="relative" onMouseLeave={() => setServicesOpen(false)}>
+                <li key={l.to} className="relative" onMouseEnter={openServices} onMouseLeave={closeServicesSoon}>
                   <div className="flex items-center">
                     <NavLink
                       to={l.to}
                       className={({ isActive }) =>
                         `nav-pill flex items-center gap-1.5 ${isActive ? "nav-pill-active" : ""}`
                       }
-                      onMouseEnter={() => setServicesOpen(true)}
-                      onFocus={() => setServicesOpen(true)}
+                      onFocus={openServices}
                       onClick={() => setServicesOpen(false)}
                     >
                       <span>{l.label}</span>
-                      <ChevronDown size={14} className={`transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
                     </NavLink>
+                    <button
+                      type="button"
+                      onClick={toggleServices}
+                      aria-label={`${servicesOpen ? "Close" : "Open"} services menu`}
+                      aria-expanded={servicesOpen}
+                      aria-controls="desktop-services-menu"
+                      className="-ml-2 flex h-9 w-7 items-center justify-center rounded-lg text-[var(--muted)] transition-colors hover:text-[var(--text)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--primary)]"
+                    >
+                      <ChevronDown size={14} className={`transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
+                    </button>
                   </div>
 
                   <AnimatePresence>
@@ -77,7 +104,10 @@ export default function Navbar({ theme, toggleTheme }) {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
                         transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-                        className="absolute left-0 top-full pt-3"
+                        id="desktop-services-menu"
+                        onMouseEnter={openServices}
+                        onMouseLeave={closeServicesSoon}
+                        className="absolute left-0 top-full z-50 pt-3"
                       >
                         <div className="w-52 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--panel-strong)] p-2 shadow-[0_18px_50px_rgba(15,23,42,0.16)] backdrop-blur-xl">
                           {serviceLinks.map((item) => (
@@ -118,7 +148,7 @@ export default function Navbar({ theme, toggleTheme }) {
           })}
         </ul>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <button
             type="button"
             onClick={toggleTheme}
@@ -136,7 +166,7 @@ export default function Navbar({ theme, toggleTheme }) {
           </NavLink>
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <button
             type="button"
             onClick={toggleTheme}
@@ -149,7 +179,10 @@ export default function Navbar({ theme, toggleTheme }) {
           <button
             className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--panel)] text-[var(--text)]"
             aria-label="Toggle menu"
-            onClick={() => setOpen((o) => !o)}
+            onClick={() => {
+              setOpen((o) => !o);
+              setServicesOpen(false);
+            }}
           >
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -163,7 +196,7 @@ export default function Navbar({ theme, toggleTheme }) {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden border-t border-[var(--border)] bg-[var(--nav-bg)]/95 backdrop-blur-xl md:hidden"
+            className="overflow-hidden border-t border-[var(--border)] bg-[var(--nav-bg)]/95 backdrop-blur-xl lg:hidden"
           >
             <ul className="flex flex-col gap-2 px-5 py-4">
               {links.map((l) => {
@@ -174,7 +207,10 @@ export default function Navbar({ theme, toggleTheme }) {
                         <div className="flex items-center gap-1">
                           <NavLink
                             to={l.to}
-                            onClick={() => setOpen(false)}
+                            onClick={() => {
+                              setOpen(false);
+                              setServicesOpen(false);
+                            }}
                             className={({ isActive }) =>
                               `flex-1 rounded-xl px-3 py-3 text-left text-base font-medium ${
                                 isActive ? "bg-dawn-gradient text-[var(--bg)]" : "text-[var(--muted)]"
@@ -189,6 +225,8 @@ export default function Navbar({ theme, toggleTheme }) {
                             onClick={() => setServicesOpen((prev) => !prev)}
                             className="flex h-10 w-10 items-center justify-center rounded-xl text-[var(--muted)]"
                             aria-label="Toggle services menu"
+                            aria-expanded={servicesOpen}
+                            aria-controls="mobile-services-menu"
                           >
                             <ChevronDown size={16} className={`transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
                           </button>
@@ -201,6 +239,7 @@ export default function Navbar({ theme, toggleTheme }) {
                               animate={{ opacity: 1, height: "auto" }}
                               exit={{ opacity: 0, height: 0 }}
                               transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                              id="mobile-services-menu"
                               className="overflow-hidden"
                             >
                               <div className="mt-2 space-y-1 rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-2">

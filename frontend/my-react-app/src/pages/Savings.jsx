@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -20,9 +19,9 @@ const plans = [
 ];
 
 const savings = [
-  { label: "Example monthly electricity bill", value: "₹2,400" },
+  { label: "Example monthly electricity bill", value: "₹2,100" },
   { label: "Example energy offset", value: "Up to 80%" },
-  { label: "Estimated monthly bill saving", value: "₹1,900" },
+  { label: "Estimated monthly bill saving", value: "₹1,700" },
   { label: "Estimated payback", value: "Quote-based" },
 ];
 
@@ -55,7 +54,7 @@ export default function Savings() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="relative"
+              className="relative lg:translate-y-3"
             >
               <div className="hero-card p-5 md:p-6">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,183,77,0.18),_transparent_38%)]" />
@@ -75,7 +74,7 @@ export default function Savings() {
                       <span>downward</span>
                     </div>
                     <div className="mt-5 flex items-end justify-between gap-3">
-                      <div className="font-display text-4xl font-semibold text-[var(--text)]">~₹1,900</div>
+                      <div className="font-display text-4xl font-semibold text-[var(--text)]">~₹1,700</div>
                       <div className="pb-1 text-sm text-[var(--muted)]">illustrative monthly bill saving</div>
                     </div>
                     <div className="mt-6 flex h-20 items-end gap-2">
@@ -94,7 +93,7 @@ export default function Savings() {
                     ))}
                   </div>
                   <p className="mt-4 text-xs leading-relaxed text-[var(--muted)]">
-                    Planning example: 300 units of monthly household use, a 3 kW rooftop system generating around 360 units in a typical month, and an assumed blended tariff of ₹8 per unit. Estimated savings assume around 240 units offset at the meter. Actual output, bill savings, fixed charges, export credits, and payback depend on your location, season, roof, and DISCOM tariff rules.
+                    Planning example: 300 units of monthly household use, a 3 kW rooftop system generating around 360 units in a typical month, and an assumed blended tariff of ₹7 per unit. Estimated savings assume around 240 units offset at the meter, or about ₹1,700 per month before fixed charges. Actual output, bill savings, export credits, and payback depend on your location, season, roof, and DISCOM tariff rules.
                   </p>
                 </div>
               </div>
@@ -176,7 +175,7 @@ export default function Savings() {
         </div>
       </section>
 
-      <section className="pb-8 md:pb-10">
+      <section className="pt-12 pb-8 md:pt-16 md:pb-10">
         <div className="mx-auto max-w-5xl px-5 md:px-8">
           <Reveal>
             <div className="relative overflow-hidden rounded-[2rem] bg-dawn-gradient p-8 text-[var(--bg)] md:p-12">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Lock, Mail } from "lucide-react";
 import Reveal from "../components/Reveal.jsx";
